@@ -1,0 +1,170 @@
+<html lang="ko">
+    <head>
+        <!-- Webpage Title -->
+        <title>나홀로 쇼핑몰</title>
+
+        <!-- Required meta tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+
+        <!-- 구글폰트 -->
+        <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+        <style type="text/css">
+            * {
+                font-family: 'Stylish', sans-serif;
+            }
+
+            .wrap {
+                width: 500px;
+                margin: auto;
+            }
+
+            .img {
+                background-image: url(https://image.yes24.com/momo/TopCate2338/MidCate7/233762526.jpg);
+                background-size: cover;
+                background-position: center;
+                width: 500px;
+                height: 300px;
+            }
+
+            .info {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            h1, h5 {
+                display: inline;
+            }
+
+            .order {
+                text-align: center;
+            }
+
+            .orders {
+                margin-top: 100px;
+            }
+
+            .blink_me {
+                animation: blinker 1s linear infinite;
+            }
+
+            @keyframes blinker {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            .font-blue {
+                color: blue
+            }
+
+
+
+        </style>
+
+        <script>
+            function order() {
+                let name = $('#order-name').val();
+                let count = $('#order-count').val();
+                let order = $('#order-address').val();
+                let phone = $('#order-phone').val();
+                if (name === "") {
+                    alert('이름을 입력하세요');
+                } else if (count === "") {
+                    alert('수량을 입력하세요')
+                } else if (order === "") {
+                    alert("주소를 입력하세요")
+                } else if (phone === "") {
+                    alert("전화번호를 입력하세요")
+                } else
+                    alert(value)
+            }
+
+            $(document).ready(function () {
+                Show_exchange_rate()
+
+                function Show_exchange_rate() {
+                    $.ajax({
+                        type: "get",
+                        url: "https://api.manana.kr/exchange/rate.json",
+                        data: {},
+                        success: function (response) {
+                            let value = response[1]["rate"];
+                            $('#ex_rate').append(value)
+
+                        }
+                    })
+                }
+            })
+
+        </script>
+
+
+    </head>
+    <body>
+        <div>
+        <div class="wrap">
+            <div class="img"></div>
+            <div class="info">
+                <h1>귀여운 탁상용 손풍기 팝니당</h1>
+                <p>
+                <h5>가격: 개당 단돈 20,000원!</h5>
+                </p>
+                <p class="blink_me">무더운 여름날씨, 일하실때 시원하게 일하세요^^</p>
+                <div id="ex_rate" class="font-blue">달러-원 환율:</div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">주문자 이름</span>
+                    </div>
+                    <input type="text" class="form-control" id="order-name">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">수량</label>
+                    </div>
+                    <select class="custom-select" id="order-count">
+                        <option selected value=""> -- 수량을 선택하세요 --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">주소</span>
+                    </div>
+                    <input type="text" class="form-control" id="order-address">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">전화번호</span>
+                    </div>
+                    <input type="text" class="form-control" id="order-phone" placeholder="'-'빼고 입력하세요">
+                </div>
+                <div class="order">
+                    <button onclick="order()" type="button" class="btn btn-primary">주문하기</button>
+                </div>
+                <div class="btn wrap" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary">이전</button>
+                    <button type="button" class="btn btn-primary"
+                            onclick="location.href='http://localhost:63342/sparta/homework/aa.html?_ijt=su9huuhgbl0hjdg5nbq9allfem'">
+                        다음
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

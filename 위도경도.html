@@ -1,0 +1,33 @@
+<!Doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+    <body>
+        <ul id="gps"></ul>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    // latitude => 위도 값
+                    latitude = position.coords.latitude;
+                    // longitude => 경도 값
+                    long = position.coords.longitude;
+                    console.log('latitude(위도):', latitude, 'longitude(경도):', long);
+                    temp_html = `<li>latitude: ${latitude} longitude: ${long}</li>`;
+                    $('#gps').append(temp_html);
+                }, function (error) {
+                    console.error(error);
+                }, {
+                    enableHighAccuracy: false,
+                    maximumAge: 0,
+                    timeout: Infinity
+                });
+            } else {
+                console.log('feature not supported')
+            }
+        }
+        getLocation();
+    </script>
+</html>
